@@ -5,38 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Начистоту — риэлтору</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,380;0,9..144,480;0,9..144,600;1,9..144,480&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 :root{
-  --bg: #F5F2EA;
-  --bg-2: #EEEAE0;
-  --paper: rgba(255,255,255,0.58);
-  --paper-strong: rgba(255,255,255,0.78);
-  --border: rgba(20,24,28,0.09);
-  --ink: #15191D;
-  --ink-soft: #565F6B;
-  --ink-faint: #8A8F97;
-  --teal: #1F4B5E;
-  --teal-deep: #123240;
-  --amber: #AD6B37;
-  --amber-soft: #E7D9C8;
-  --radius: 22px;
-  --maxw: 1120px;
+  --bg: #FFFFFF;
+  --surface: #F5F6F8;
+  --surface-strong: #EEF0F3;
+  --border: rgba(15,23,31,0.08);
+  --ink: #12161B;
+  --ink-soft: #565E68;
+  --ink-faint: #969CA4;
+  --teal: #1B4F63;
+  --teal-deep: #0F3542;
+  --teal-mist: #EAF2F4;
+  --amber: #B36A34;
+  --amber-soft: #FBEEE1;
+  --radius: 20px;
+  --maxw: 1160px;
 }
 
 *{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{
   margin:0;
-  background:
-    radial-gradient(1200px 600px at 15% -10%, #FBF9F4 0%, transparent 60%),
-    radial-gradient(900px 500px at 100% 10%, #EFE8DA 0%, transparent 55%),
-    var(--bg);
+  background: var(--bg);
   color:var(--ink);
   font-family:'Manrope', sans-serif;
   font-size:17px;
-  line-height:1.55;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+body::before, body::after{
+  content:''; position:fixed; z-index:-1; border-radius:50%; filter:blur(20px); pointer-events:none;
+}
+body::before{
+  width:640px; height:640px; top:-220px; right:-160px;
+  background: radial-gradient(circle, rgba(27,79,99,0.07) 0%, transparent 70%);
+}
+body::after{
+  width:560px; height:560px; bottom:-200px; left:-180px;
+  background: radial-gradient(circle, rgba(179,106,52,0.06) 0%, transparent 70%);
 }
 
 a{color:inherit;}
@@ -55,7 +64,7 @@ header.nav{
   padding:18px 28px; max-width:var(--maxw); margin:0 auto;
 }
 .logo{
-  font-family:'Fraunces', serif; font-weight:600; font-size:22px;
+  font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:22px;
   letter-spacing:-0.01em; text-decoration:none; color:var(--ink);
   display:flex; align-items:center; gap:8px;
 }
@@ -68,21 +77,21 @@ nav.links a:hover{color:var(--ink);}
 nav.links a.active{color:var(--ink); font-weight:600;}
 
 /* Hero */
-.hero{padding:96px 0 64px;}
+.hero{padding:120px 0 80px; overflow:hidden; position:relative;}
+.hero-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;}
 .eyebrow{
-  display:inline-flex; align-items:center; gap:8px;
-  font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.04em;
-  color:var(--teal); background:var(--amber-soft); border:1px solid var(--border);
-  padding:6px 12px; border-radius:100px; margin-bottom:28px;
-  text-transform:uppercase;
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:'Manrope', sans-serif; font-weight:600; font-size:14px;
+  color:var(--teal); margin-bottom:26px;
 }
+.eyebrow .line{width:26px; height:1px; background:var(--teal); display:inline-block;}
 h1{
-  font-family:'Fraunces', serif; font-weight:480; font-size:clamp(40px,6vw,68px);
-  line-height:1.06; letter-spacing:-0.015em; margin:0 0 22px;
-  max-width:780px;
+  font-family:'Space Grotesk', sans-serif; font-weight:440; font-size:clamp(38px,5.4vw,62px);
+  line-height:1.12; letter-spacing:-0.015em; margin:0 0 24px;
+  max-width:660px;
 }
-h1 em{font-style:italic; color:var(--teal);}
-.lede{font-size:19px; color:var(--ink-soft); max-width:560px; margin:0 0 36px;}
+h1 em{font-style:normal; color:var(--teal); font-weight:600;}
+.lede{font-size:18.5px; color:var(--ink-soft); max-width:520px; margin:0 0 40px; line-height:1.65;}
 
 .cta-row{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:8px;}
 .btn{
@@ -93,15 +102,33 @@ h1 em{font-style:italic; color:var(--teal);}
 .btn:hover{transform:translateY(-1px);}
 .btn-primary{background:var(--teal); color:#fff;}
 .btn-primary:hover{box-shadow:0 8px 24px rgba(31,75,94,0.28);}
-.btn-ghost{background:var(--paper-strong); border:1px solid var(--border); color:var(--ink);}
+.btn-ghost{background:var(--surface-strong); border:1px solid var(--border); color:var(--ink);}
 
-/* Glass card / disclosure tag — signature element */
+/* Surface card / disclosure tag — signature element */
 .glass{
-  background:var(--paper);
+  background:var(--surface);
   border:1px solid var(--border);
   border-radius:var(--radius);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset, 0 20px 40px -28px rgba(20,24,28,0.18);
+  box-shadow: none;
+  transition: box-shadow .2s ease, transform .2s ease;
+}
+.glass:hover{box-shadow: 0 12px 28px -18px rgba(15,23,31,0.18);}
+
+/* Decorative line-art visuals */
+.hero-visual{position:relative; display:flex; align-items:center; justify-content:center; min-height:340px;}
+.hero-visual .glow{
+  position:absolute; width:420px; height:420px; border-radius:50%;
+  background: radial-gradient(circle, rgba(31,75,94,0.10) 0%, rgba(173,107,55,0.07) 45%, transparent 72%);
+  filter: blur(6px);
+}
+.hero-visual svg{position:relative; z-index:1; width:100%; max-width:420px; height:auto;}
+
+.section-visual{display:flex; justify-content:center; margin:8px 0 48px; opacity:.9;}
+.section-visual svg{width:100%; max-width:560px; height:auto;}
+
+.divider{
+  height:1px; background:linear-gradient(90deg, transparent, var(--border) 20%, var(--border) 80%, transparent);
+  margin:0;
 }
 
 .disclosure{
@@ -115,13 +142,13 @@ h1 em{font-style:italic; color:var(--teal);}
 .disclosure.zero b{color:#3E7A55;}
 
 /* Audience cards grid */
-.section{padding:64px 0;}
-.section-head{max-width:640px; margin-bottom:44px;}
+.section{padding:88px 0;}
+.section-head{max-width:640px; margin-bottom:52px;}
 .kicker{
   font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase;
   letter-spacing:.08em; color:var(--ink-faint); margin-bottom:10px; display:block;
 }
-h2{font-family:'Fraunces', serif; font-weight:480; font-size:clamp(28px,4vw,40px); margin:0 0 14px; letter-spacing:-0.01em;}
+h2{font-family:'Space Grotesk', sans-serif; font-weight:480; font-size:clamp(28px,4vw,40px); margin:0 0 14px; letter-spacing:-0.01em;}
 .section-head p{color:var(--ink-soft); font-size:17px; margin:0;}
 
 .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:18px;}
@@ -133,7 +160,7 @@ h2{font-family:'Fraunces', serif; font-weight:480; font-size:clamp(28px,4vw,40px
 }
 .card:hover{transform:translateY(-3px);}
 .card .num{font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--amber);}
-.card h3{font-family:'Fraunces', serif; font-weight:560; font-size:21px; margin:0;}
+.card h3{font-family:'Space Grotesk', sans-serif; font-weight:560; font-size:21px; margin:0;}
 .card p{color:var(--ink-soft); font-size:14.5px; margin:0; flex-grow:1;}
 .card .arrow{font-size:14px; color:var(--teal); font-weight:600;}
 .card.soon{opacity:.62;}
@@ -144,9 +171,9 @@ h2{font-family:'Fraunces', serif; font-weight:480; font-size:clamp(28px,4vw,40px
 
 /* How it works */
 .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:8px;}
-.step{padding:28px 24px;}
-.step .n{font-family:'Fraunces',serif; font-style:italic; font-size:34px; color:var(--amber); display:block; margin-bottom:10px;}
-.step h4{font-size:17px; margin:0 0 8px; font-weight:700;}
+.step{padding:34px 28px;}
+.step-icon{display:block; margin-bottom:18px;}
+.step h4{font-size:17px; margin:0 0 10px; font-weight:700;}
 .step p{color:var(--ink-soft); font-size:14.5px; margin:0;}
 
 /* Content pages */
@@ -163,13 +190,18 @@ h2{font-family:'Fraunces', serif; font-weight:480; font-size:clamp(28px,4vw,40px
 }
 .pain-solution p{margin:0; color:var(--ink-soft); font-size:15.5px;}
 
-.list-econ{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:14px;}
+.list-econ{list-style:none; padding:0; margin:0; display:flex; flex-direction:column;}
 .list-econ li{
-  display:flex; align-items:flex-start; gap:14px; padding:18px 20px;
+  display:flex; align-items:flex-start; gap:20px; padding:24px 4px;
+  border-bottom:1px solid var(--border);
 }
+.list-econ li:first-child{padding-top:4px;}
+.list-econ li:last-child{border-bottom:none;}
 .list-econ .mark{
-  font-family:'IBM Plex Mono', monospace; color:var(--teal); font-weight:500; flex-shrink:0; margin-top:1px;
+  flex-shrink:0; margin-top:2px; display:flex; align-items:center;
+  font-family:'IBM Plex Mono', monospace; color:var(--amber); font-weight:500; font-size:14px;
 }
+.list-econ .mark svg{display:block;}
 
 .faq{display:flex; flex-direction:column; gap:14px; margin-top:8px;}
 .faq details{padding:20px 24px;}
@@ -180,7 +212,7 @@ h2{font-family:'Fraunces', serif; font-weight:480; font-size:clamp(28px,4vw,40px
 .faq p{margin:12px 0 0; color:var(--ink-soft); font-size:15px;}
 
 .cta-band{padding:56px; text-align:center; margin:64px 0;}
-.cta-band h3{font-family:'Fraunces',serif; font-size:clamp(24px,3.6vw,32px); margin:0 0 10px;}
+.cta-band h3{font-family:'Space Grotesk', sans-serif; font-size:clamp(24px,3.6vw,32px); margin:0 0 10px;}
 .cta-band p{color:var(--ink-soft); margin:0 0 26px;}
 
 footer{border-top:1px solid var(--border); padding:36px 0; margin-top:40px;}
@@ -217,13 +249,24 @@ footer{border-top:1px solid var(--border); padding:36px 0; margin-top:40px;}
 </header>
 
 <section class="page-hero">
-  <div class="wrap">
-    <p class="breadcrumb"><a href="index.html">Начистоту</a> / Риэлтору</p>
-    <span class="eyebrow">Усилитель, а не конкурент</span>
-    <h1>Рутину — автоматике. <em>Экспертизу и репутацию</em> — вам.</h1>
-    <p class="lede">Мы не заменяем реального агента: сложную сделку, переговоры и личную гарантию не автоматизировать. Мы забираем именно ту часть, которая обесценивает профессию в глазах рынка — бесконечные повторяющиеся звонки.</p>
-    <div class="cta-row">
-      <a href="#partner" class="btn btn-primary">Стать партнёром →</a>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="breadcrumb"><a href="index.html">Начистоту</a> / Риэлтору</p>
+      <span class="eyebrow"><span class="line"></span>Усилитель, а не конкурент</span>
+      <h1>Рутину — автоматике. <em>Экспертизу и репутацию</em> — вам.</h1>
+      <p class="lede">Мы не заменяем реального агента: сложную сделку, переговоры и личную гарантию не автоматизировать. Мы забираем именно ту часть, которая обесценивает профессию в глазах рынка — бесконечные повторяющиеся звонки.</p>
+      <div class="cta-row">
+        <a href="#partner" class="btn btn-primary">Стать партнёром →</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="40" y="60" width="90" height="70" rx="12" stroke="#1B4F63" stroke-width="1.4" opacity="0.5"/>
+        <path d="M60 80h50M60 96h35M60 112h50" stroke="#1B4F63" stroke-width="1.2" opacity="0.4"/>
+        <path d="M140 95h40" stroke="#1B4F63" stroke-width="1.3" stroke-dasharray="4 5"/>
+        <circle cx="220" cy="150" r="46" stroke="#B36A34" stroke-width="1.4" opacity="0.7"/>
+        <path d="M205 150l10 10 20-22" stroke="#B36A34" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
   </div>
 </section>
@@ -246,9 +289,9 @@ footer{border-top:1px solid var(--border); padding:36px 0; margin-top:40px;}
       <h2>Доход сверху, не вместо</h2>
     </div>
     <ul class="list-econ">
-      <li class="glass"><span class="mark">—</span><span>Referral-fee за каждого клиента, которого направляем на ваш эксклюзив — деньги дополнительно к тому, что вы уже зарабатываете.</span></li>
-      <li class="glass"><span class="mark">—</span><span>Для тех, кто делится скриптами и записями звонков для обучения модели — доля в бизнесе или revenue share, отдельно прописанные условия.</span></li>
-      <li class="glass"><span class="mark">—</span><span>Никакой конкуренции за вашу текущую клиентскую базу — работаем с новым потоком, не перехватываем то, что уже ваше.</span></li>
+      <li><span class="mark"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="#1B4F63" stroke-width="1.3"/><path d="M6 9.5l2 2 4-4.5" stroke="#1B4F63" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Referral-fee за каждого клиента, которого направляем на ваш эксклюзив — деньги дополнительно к тому, что вы уже зарабатываете.</span></li>
+      <li><span class="mark"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="#1B4F63" stroke-width="1.3"/><path d="M6 9.5l2 2 4-4.5" stroke="#1B4F63" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Для тех, кто делится скриптами и записями звонков для обучения модели — доля в бизнесе или revenue share, отдельно прописанные условия.</span></li>
+      <li><span class="mark"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7.5" stroke="#1B4F63" stroke-width="1.3"/><path d="M6 9.5l2 2 4-4.5" stroke="#1B4F63" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span>Никакой конкуренции за вашу текущую клиентскую базу — работаем с новым потоком, не перехватываем то, что уже ваше.</span></li>
     </ul>
   </div>
 </section>
