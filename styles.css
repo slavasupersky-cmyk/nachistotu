@@ -18,28 +18,21 @@
 }
 
 *{box-sizing:border-box;}
-html{scroll-behavior:smooth;}
+html{
+  scroll-behavior:smooth;
+  background:#FFFFFF;
+  min-height:100%;
+}
 body{
   margin:0;
   background: var(--bg);
+  min-height:100vh;
   color:var(--ink);
   font-family:'Manrope', sans-serif;
   font-size:17px;
   line-height:1.6;
   -webkit-font-smoothing:antialiased;
   position:relative;
-  overflow-x:hidden;
-}
-body::before, body::after{
-  content:''; position:absolute; z-index:-1; border-radius:50%; pointer-events:none;
-}
-body::before{
-  width:640px; height:640px; top:-220px; right:-160px;
-  background: radial-gradient(circle, rgba(27,79,99,0.06) 0%, rgba(27,79,99,0.02) 40%, transparent 70%);
-}
-body::after{
-  width:560px; height:560px; top:900px; left:-180px;
-  background: radial-gradient(circle, rgba(179,106,52,0.05) 0%, rgba(179,106,52,0.02) 40%, transparent 70%);
 }
 
 a{color:inherit;}
